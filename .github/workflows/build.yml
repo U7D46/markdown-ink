@@ -27,7 +27,10 @@ jobs:
           gradle-version: '8.4'
 
       - name: Build Release APK
-        run: gradle assembleRelease
+        run: |
+          mkdir -p build-logs
+          gradle assembleRelease --stacktrace 2>&1 | tee build-logs/release.log
+          test ${PIPESTATUS[0]} -eq 0
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
@@ -38,7 +41,10 @@ jobs:
 
       - name: Build Debug APK (fallback)
         if: failure()
-        run: gradle assembleDebug
+        run: |
+          mkdir -p build-logs
+          gradle assembleDebug --stacktrace 2>&1 | tee build-logs/debug.log
+          test ${PIPESTATUS[0]} -eq 0
 
       - name: Upload Debug APK artifact
         if: failure()
@@ -46,4 +52,12 @@ jobs:
         with:
           name: InkPad-debug
           path: app/build/outputs/apk/debug/*.apk
+          retention-days: 7
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: build-logs/*.log
           retention-days: 7
