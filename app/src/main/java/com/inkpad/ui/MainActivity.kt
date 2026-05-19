@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
         val spans = renderer.render(text)
         // Only update if content hasn't changed
         if (editor.text.toString() == text) {
-            val editable = editor.text
+            val editable = editor.text ?: return
             // Apply spans without changing text content
             val existingSpans = editable.getSpans(0, editable.length, Object::class.java)
             existingSpans.forEach { editable.removeSpan(it) }
