@@ -1,0 +1,4 @@
+-keep class com.inkpad.** { *; }
+-keep class com.thegrizzlylabs.sardineandroid.** { *; }
+-dontwarn okhttp3.**
+-dontwarn okio.**

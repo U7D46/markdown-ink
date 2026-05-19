@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_main">
+
+        <!-- Top bar: prev/next line buttons + title -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/bg_topbar"
+            android:padding="4dp"
+            android:gravity="center_vertical">
+
+            <!-- ← prev line -->
+            <Button
+                android:id="@+id/btn_prev_line"
+                style="@style/NavButton"
+                android:text="←"
+                android:layout_width="48dp"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:id="@+id/tv_filename"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:singleLine="true"
+                android:ellipsize="middle"
+                android:text="InkPad"/>
+
+            <!-- → next line -->
+            <Button
+                android:id="@+id/btn_next_line"
+                style="@style/NavButton"
+                android:text="→"
+                android:layout_width="48dp"
+                android:layout_height="40dp"/>
+
+            <!-- Open drawer -->
+            <ImageButton
+                android:id="@+id/btn_open_drawer"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="文件列表"
+                android:src="@android:drawable/ic_menu_sort_by_size"/>
+
+        </LinearLayout>
+
+        <!-- Progress bar -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:progressTint="@color/accent"
+            android:max="100"
+            android:progress="0"/>
+
+        <!-- Editor (takes all remaining space) -->
+        <com.inkpad.editor.ImmersiveEditText
+            android:id="@+id/editor"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/bg_main"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:lineSpacingMultiplier="1.5"
+            android:padding="16dp"
+            android:gravity="top|start"
+            android:inputType="textMultiLine|textCapSentences"
+            android:scrollbars="vertical"
+            android:overScrollMode="never"
+            android:hint="开始写作…"
+            android:textColorHint="@color/text_hint"/>
+
+        <!-- Status bar: word count + sync status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/bg_statusbar"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="3dp">
+
+            <TextView
+                android:id="@+id/word_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:text="0字"/>
+
+            <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/sync_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <!-- Bottom toolbar -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_toolbar"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="4dp">
+
+                <Button android:id="@+id/tb_bold"       style="@style/ToolbarButton" android:text="B"/>
+                <Button android:id="@+id/tb_highlight"  style="@style/ToolbarButton" android:text="H"/>
+                <Button android:id="@+id/tb_strikethrough" style="@style/ToolbarButton" android:text="S̶"/>
+                <View style="@style/ToolbarDivider"/>
+                <Button android:id="@+id/tb_indent"     style="@style/ToolbarButton" android:text="→|"/>
+                <Button android:id="@+id/tb_unindent"   style="@style/ToolbarButton" android:text="|←"/>
+                <View style="@style/ToolbarDivider"/>
+                <Button android:id="@+id/tb_select_line"   style="@style/ToolbarButton" android:text="选行"/>
+                <Button android:id="@+id/tb_delete_line"   style="@style/ToolbarButton" android:text="删行"/>
+                <Button android:id="@+id/tb_clear_format"  style="@style/ToolbarButton" android:text="清格"/>
+                <Button android:id="@+id/tb_clean_lines"   style="@style/ToolbarButton" android:text="清空行"/>
+                <View style="@style/ToolbarDivider"/>
+                <Button android:id="@+id/tb_immersive"  style="@style/ToolbarButton" android:text="沉浸"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+    <!-- Drawer: file list -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@color/bg_drawer">
+
+        <!-- Drawer header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/bg_drawer_header"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="笔记"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"/>
+
+            <ImageButton
+                android:id="@+id/btn_new_file"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="新建"
+                android:src="@android:drawable/ic_input_add"/>
+
+        </LinearLayout>
+
+        <!-- File list -->
+        <ListView
+            android:id="@+id/file_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@color/divider"
+            android:dividerHeight="1dp"/>
+
+        <!-- Drawer footer buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/bg_drawer_header"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/btn_sync"
+                style="@style/DrawerFooterButton"
+                android:text="同步"/>
+
+            <Button
+                android:id="@+id/btn_settings"
+                style="@style/DrawerFooterButton"
+                android:text="设置"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

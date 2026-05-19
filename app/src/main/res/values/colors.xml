@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- E-ink optimized palette: pure black/white with minimal grays -->
+    <color name="bg_main">#FFFFFF</color>
+    <color name="bg_topbar">#F0F0F0</color>
+    <color name="bg_toolbar">#EBEBEB</color>
+    <color name="bg_statusbar">#F5F5F5</color>
+    <color name="bg_drawer">#FAFAFA</color>
+    <color name="bg_drawer_header">#EEEEEE</color>
+
+    <color name="text_primary">#0A0A0A</color>
+    <color name="text_secondary">#555555</color>
+    <color name="text_hint">#AAAAAA</color>
+
+    <color name="accent">#000000</color>
+    <color name="divider">#DDDDDD</color>
+
+    <!-- Markdown colors: high contrast for e-ink -->
+    <color name="heading_color">#000000</color>
+    <color name="quote_bar">#888888</color>
+    <color name="highlight_bg">#DDDDDD</color>   <!-- gray highlight instead of yellow for e-ink -->
+    <color name="callout_default">#444444</color>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.InkPad" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorPrimaryVariant">@color/accent</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">@color/bg_main</item>
+        <!-- Disable all window animations for e-ink -->
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- No overscroll glow -->
+        <item name="android:overScrollMode">never</item>
+    </style>
+
+    <!-- Navigation buttons (← →) -->
+    <style name="NavButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Toolbar action buttons -->
+    <style name="ToolbarButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:minWidth">40dp</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:layout_marginHorizontal">1dp</item>
+    </style>
+
+    <!-- Toolbar separator -->
+    <style name="ToolbarDivider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:background">@color/divider</item>
+        <item name="android:layout_marginHorizontal">4dp</item>
+    </style>
+
+    <!-- Drawer footer buttons -->
+    <style name="DrawerFooterButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+</resources>
